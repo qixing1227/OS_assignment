@@ -121,9 +121,15 @@ void run_page_replacement() {
     
     int n;
     printf("请输入页面访问序列长度 (如 12): ");
-    scanf("%d", &n);
+    if (scanf("%d", &n) != 1 || n <= 0) {
+        printf("输入无效！\n");
+        while(getchar() != '\n');
+        return;
+    }
     
     int *pages = (int*)malloc(n * sizeof(int));
+    if (!pages) return;
+    
     printf("请输入页面访问序列 (用空格隔开，如 4 3 2 1 4 3 5 4 3 2 1 5):\n> ");
     for (int i = 0; i < n; i++) {
         scanf("%d", &pages[i]);

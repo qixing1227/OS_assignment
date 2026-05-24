@@ -28,4 +28,7 @@ void print_processes(Process processes[], int n);
 void input_processes(Process **processes, int *n);       
 void reset_processes(Process processes[], int n);
 
+// 任务一：模块入口
+void run_task1_scheduler();
+
 #endif

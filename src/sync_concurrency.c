@@ -51,22 +51,22 @@ void* consumer(void* arg) {
 
 void run_producer_consumer() {
     printf("\n=== [生产者-消费者问题模拟] ===\n");
-    printf("设定: 3个生产者，2个消费者，缓冲区大小 %d\n", BUFFER_SIZE);
+    printf("设定: 2个生产者，2个消费者，缓冲区大小 %d\n", BUFFER_SIZE);
     
     // 初始化同步机制
     sem_init(&empty, 0, BUFFER_SIZE);
     sem_init(&full, 0, 0);
     pthread_mutex_init(&prod_cons_mutex, NULL);
     
-    pthread_t prods[3], cons[2];
-    int p_ids[3] = {1, 2, 3};
+    pthread_t prods[2], cons[2];
+    int p_ids[2] = {1, 2};
     int c_ids[2] = {1, 2};
     
-    for(int i = 0; i < 3; i++) pthread_create(&prods[i], NULL, producer, &p_ids[i]);
+    for(int i = 0; i < 2; i++) pthread_create(&prods[i], NULL, producer, &p_ids[i]);
     for(int i = 0; i < 2; i++) pthread_create(&cons[i], NULL, consumer, &c_ids[i]);
     
     // 等待线程执行完毕
-    for(int i = 0; i < 3; i++) pthread_join(prods[i], NULL);
+    for(int i = 0; i < 2; i++) pthread_join(prods[i], NULL);
     for(int i = 0; i < 2; i++) pthread_join(cons[i], NULL);
     
     // 销毁同步机制

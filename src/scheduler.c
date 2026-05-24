@@ -247,3 +247,51 @@ void rr(Process processes[], int n, int time_quantum) {
     }
     print_processes(processes, n);
 }
+void run_task1_scheduler() {
+    Process *processes = NULL;
+    int n = 0;
+
+    printf("\n=== 任务一：处理机调度 (Processor Scheduling) ===\n");
+    input_processes(&processes, &n);
+    if (n <= 0) {
+        printf("进程数量无效，返回主菜单。\n");
+        return;
+    }
+
+    int choice;
+    while(1) {
+        printf("\n请选择调度算法：\n");
+        printf("1. FCFS (先来先服务)\n");
+        printf("2. SJF (短作业优先 - 非抢占式)\n");
+        printf("3. RR (时间片轮转)\n");
+        printf("0. 退出处理机调度模块\n");
+        printf("请输入您的选择: ");
+        if (scanf("%d", &choice) != 1) {
+            while(getchar() != '\n'); 
+            break;
+        }
+
+        if (choice == 1) {
+            fcfs(processes, n);
+        } else if (choice == 2) {
+            sjf(processes, n);
+        } else if (choice == 3) {
+            int time_quantum;
+            printf("请输入时间片大小(Time Quantum): ");
+            if (scanf("%d", &time_quantum) == 1 && time_quantum > 0) {
+                rr(processes, n, time_quantum);
+            } else {
+                printf("时间片无效\n");
+                while(getchar() != '\n');
+            }
+        } else if (choice == 0) {
+            break;
+        } else {
+            printf("无效的选择，请重新输入！\n");
+        }
+    }
+
+    if (processes) {
+        free(processes);
+    }
+}
