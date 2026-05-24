@@ -87,9 +87,8 @@ make clean && make
 
 ## 📸 运行效果演示
 
-*(请评审老师参考下方系统运行截图，展示了 AI 自然语言解析与安全沙箱拦截机制)*
 
-> **[在此处拖入你的系统运行截图]**
+> **![alt text](image-1.png)**
 
 ---
 **📝 License**: MIT License
