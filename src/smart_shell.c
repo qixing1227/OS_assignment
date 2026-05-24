@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <ctype.h>
+#include <signal.h>
 
 // 引入 OS 内置实验模块
 extern void run_task1_scheduler();
@@ -67,6 +68,9 @@ void ask_ai_for_command(const char *user_intent, char *ai_command) {
 
 // 运行智能 Shell 
 void run_smart_shell() {
+    // 【系统守护】：忽略 Ctrl+C (SIGINT) 信号，防止智能 Shell 本体被用户误杀
+    signal(SIGINT, SIG_IGN);
+
     char input[MAX_INPUT_SIZE];
     char *args[MAX_ARGS];
 
