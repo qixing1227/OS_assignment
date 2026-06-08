@@ -3,7 +3,7 @@
 
 #include "common.h"
 
-// 任务五：大模型驱动的智能Shell扩展
+// 任务五：Shell扩展
 void run_smart_shell();
 
 #endif
